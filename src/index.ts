@@ -1,29 +1,29 @@
+import 'dotenv/config';
+import './config/database';
+
 import express from 'express';
 import cors from 'cors';
 
-// Porta do servidor
-const PORT = process.env.PORT || 4000;
+import routes from './routers/index';
 
-// Host do servidor
-const HOSTNAME = process.env.HOSTNAME || 'http://localhost';
+const PORT = process.env.PORT ?? 4000;
 
-// App Express
-const app = express();
+const HOSTNAME = process.env.HOSTNAME ?? 'http://localhost';
 
-// Endpoint raiz
-app.get('/', (req, res) => {
-  res.send('Bem-vindo ao PokeTreiners API!')
-});
+const server = express();
 
-// Cors
-app.use(cors({ origin: [process.env.FRONT_URL || 'http://localhost:3000'] }));
+server.use(cors({
+    origin: [process.env.FRONT_URL ?? 'http://localhost:3000'],
+}));
+
+server.use('/api', routes);
 
 // Resposta padrão para quaisquer outras requisições:
-app.use((req, res) => {
-  res.status(404)
+server.use((req, res) => {
+    res.status(404);
 });
 
-// Inicia o sevidor
-app.listen(PORT, () => {
-  console.log(`Servidor rodando com sucesso ${HOSTNAME}:${PORT}`)
+
+server.listen(PORT, () => {
+    console.log(`Servidor rodando com sucesso ${HOSTNAME}:${PORT}/api`);
 });
