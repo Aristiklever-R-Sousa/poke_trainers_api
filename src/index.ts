@@ -1,14 +1,17 @@
 import 'dotenv/config';
-import './config/database';
 
 import express from 'express';
 import cors from 'cors';
 
+import './config/database';
+import dbInit from './database/migrations/init';
+
 import routes from './routers/index';
 
-const PORT = process.env.PORT ?? 4000;
+dbInit();
 
-const HOSTNAME = process.env.HOSTNAME ?? 'http://localhost';
+const HOSTNAME = process.env.API_URL ?? 'http://localhost';
+const PORT = process.env.PORT ?? 4000;
 
 const server = express();
 
