@@ -1,5 +1,6 @@
 import sequelizeConnection from '@config/database';
 import { DataTypes, Model } from 'sequelize';
+// import TrainerPokemon from './TrainerPokemon';
 
 class Trainer extends Model {
     public id!: number;
@@ -13,7 +14,7 @@ class Trainer extends Model {
 Trainer.init(
     {
         id: {
-            type: DataTypes.BIGINT.UNSIGNED,
+            type: DataTypes.BIGINT,
             autoIncrement: true,
             primaryKey: true,
         },
@@ -36,5 +37,7 @@ Trainer.init(
         // paranoid: true,
     }
 );
+
+
 
 export default Trainer;

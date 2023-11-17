@@ -8,16 +8,17 @@ import dbInit from './database/migrations/init';
 
 import routes from './routers/index';
 
-dbInit();
-
 const HOSTNAME = process.env.API_URL ?? 'http://localhost';
 const PORT = process.env.PORT ?? 4000;
+
+dbInit();
 
 const server = express();
 
 server.use(cors({
     origin: [process.env.FRONT_URL ?? 'http://localhost:3000'],
 }));
+server.use(express.json());
 
 server.use('/api', routes);
 

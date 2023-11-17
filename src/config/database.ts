@@ -1,9 +1,5 @@
 import { Dialect, Sequelize } from 'sequelize';
 
-
-
-
-
 const dbName = process.env.POSTGRES_DATABASE as string;
 const dbUser = process.env.POSTGRES_USER as string;
 const dbHost = process.env.POSTGRES_HOST;
