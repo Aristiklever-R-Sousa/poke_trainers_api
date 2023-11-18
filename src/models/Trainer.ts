@@ -1,5 +1,6 @@
 import sequelizeConnection from '@config/database';
 import { DataTypes, Model } from 'sequelize';
+import bcrypt from 'bcrypt';
 // import TrainerPokemon from './TrainerPokemon';
 
 class Trainer extends Model {
@@ -38,6 +39,8 @@ Trainer.init(
     }
 );
 
-
+Trainer.beforeSave(async (trainer) => {
+    trainer.password = await bcrypt.hash(trainer.password, 8);
+});
 
 export default Trainer;
