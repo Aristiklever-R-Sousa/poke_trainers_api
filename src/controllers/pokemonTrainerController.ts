@@ -21,11 +21,11 @@ export const listAssociatedPokemon = async (req: Request, res: Response) => {
             }
         });
 
-        res.json({ myPokes });
+        return res.json({ myPokes });
 
     } catch (err) {
-        if (err instanceof EagerLoadingError) res.status(500).json({ message: err.message });
-        res.status(500).json({ message: 'Ocorreu um erro...', err });
+        if (err instanceof EagerLoadingError) return res.status(500).json({ message: err.message });
+        return res.status(500).json({ message: 'Ocorreu um erro...', err });
     }
 
 };
@@ -47,8 +47,8 @@ export const associatePokeToTrainer = async (req: Request, res: Response) => {
             }
         });
 
-        res.status(201).json({ message: 'Associações feitas!' });
+        return res.status(201).json({ message: 'Associações feitas!' });
     } catch (err) {
-        res.status(500).json({ message: 'Ocorreu um erro...', err });
+        return res.status(500).json({ message: 'Ocorreu um erro...', err });
     }
 };

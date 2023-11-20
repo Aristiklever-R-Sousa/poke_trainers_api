@@ -5,6 +5,7 @@ import bcrypt from 'bcrypt';
 
 class Trainer extends Model {
     public id!: number;
+    public name!: string;
     public nickname!: string;
     public password!: string;
 
@@ -18,6 +19,10 @@ Trainer.init(
             type: DataTypes.BIGINT,
             autoIncrement: true,
             primaryKey: true,
+        },
+        name: {
+            type: DataTypes.STRING,
+            allowNull: false,
         },
         nickname: {
             type: DataTypes.STRING,

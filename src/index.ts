@@ -11,12 +11,12 @@ import routes from './routers/index';
 const HOSTNAME = process.env.API_URL ?? 'http://localhost';
 const PORT = process.env.PORT ?? 4000;
 
-dbInit();
+// dbInit();
 
 const server = express();
 
 server.use(cors({
-    origin: [process.env.FRONT_URL ?? 'http://localhost:3000'],
+    origin: [...process.env.FRONT_URL?.split(',') ?? 'http://localhost:3001'],
 }));
 server.use(express.json());
 

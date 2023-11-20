@@ -12,7 +12,7 @@ const authMiddleware = async (req: Request, res: Response, next: NextFunction) =
         const token = req.header('Authorization')?.replace('Bearer ', '');
 
         if (!token) {
-            throw new Error();
+            throw new Error('Token não informado!');
         }
         // console.log({ token, SECRET_KEY });
 
@@ -22,9 +22,10 @@ const authMiddleware = async (req: Request, res: Response, next: NextFunction) =
 
         next();
     } catch (err) {
-        if (err instanceof TokenExpiredError) res.status(401).json({ message: 'O token expirou, faça login novamente!' });
+        if (err instanceof TokenExpiredError) return res.status(401).json({ message: 'O token expirou, faça login novamente!' });
+        if (err instanceof Error) return res.status(401).json({ message: 'Token não informado!' });
 
-        res.status(500).json({ err });
+        return res.status(500).json({ err });
     }
 };
 
