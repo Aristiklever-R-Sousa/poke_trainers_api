@@ -1,6 +1,6 @@
 # Wellcome, Trainer!!
 
-Essa API tem como objetivo formar um time pokemon com até no máximo 5 pokemons!
+Esse projeto tem como objetivo formar um time pokemon com até no máximo 5 pokemons!
 
 Como recursos, temos:
 
