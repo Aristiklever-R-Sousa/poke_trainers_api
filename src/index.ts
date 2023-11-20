@@ -11,7 +11,7 @@ import routes from './routers/index';
 const HOSTNAME = process.env.API_URL ?? 'http://localhost';
 const PORT = process.env.PORT ?? 4000;
 
-// dbInit();
+dbInit();
 
 const server = express();
 
